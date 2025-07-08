@@ -8,14 +8,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="debug-utils",
+    name="debug_utils",
     version="0.1.0",
     author="AI Debug Utils",
-    author_email="your.email@example.com",
+    author_email="mmathew23@gmail.com",
     description="Modular debugging utilities for AI training and inference workflows",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/debug-utils",
+    url="https://github.com/mmathew23/debug_utils",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -56,8 +56,8 @@ setup(
     zip_safe=False,
     keywords="debugging, ai, ml, pytorch, testing, development",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/debug-utils/issues",
-        "Source": "https://github.com/yourusername/debug-utils",
-        "Documentation": "https://github.com/yourusername/debug-utils/wiki",
+        "Bug Reports": "https://github.com/mmathew23/debug_utils/issues",
+        "Source": "https://github.com/mmathew23/debug_utils",
+        "Documentation": "https://github.com/mamthew23/debug_utils/wiki",
     },
 )
