@@ -257,6 +257,25 @@ print(f"Average time: {stats['avg_time']:.4f}s")
 print(f"Success rate: {stats['successful_runs']}/{stats['num_runs']}")
 ```
 
+### Method Instrumentation
+
+Capture methods of classes or models on the fly:
+
+```python
+from debug_utils import capture_method
+from transformers import AutoModelForCausalLM
+
+model = AutoModelForCausalLM.from_pretrained('gpt2')
+
+# Temporarily capture forward pass
+with capture_method(model, 'forward'):
+    model(torch.randint(0, 10, (1, 5)))
+
+# Retrieve captured call
+call = get_captured_calls()[-1]
+print(call.function_name, call.error)
+```
+
 ### Workspace Management
 
 ```python

@@ -42,7 +42,7 @@ def model_forward_pass(input_tensor, model_weights, config):
     hidden = torch.relu(hidden)
     
     if config.get('use_dropout', False):
-        hidden = torch.dropout(hidden, p=config.get('dropout_rate', 0.5))
+        hidden = torch.nn.functional.dropout(hidden, p=config.get('dropout_rate', 0.5))
     
     output = torch.matmul(hidden, model_weights['linear2'])
     

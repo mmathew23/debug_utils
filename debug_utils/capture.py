@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Optional, Callable, Union
 from dataclasses import dataclass, asdict
 from datetime import datetime
 import uuid
+from contextlib import contextmanager
 
 
 @dataclass
@@ -173,4 +174,31 @@ def get_captured_calls(function_name: Optional[str] = None) -> List[FunctionCall
 def clear_captured_calls():
     """Clear captured calls from the default capture instance."""
     default_capture.clear_calls()
+
+
+def instrument_method(obj: Any, method_name: str,
+                      include_source: bool = True,
+                      capture_imports: bool = True):
+    """Decorate a method on an object to capture its calls."""
+    original = getattr(obj, method_name)
+    decorated = capture_function(include_source, capture_imports)(original)
+    setattr(obj, method_name, decorated)
+    return original
+
+
+def uninstrument_method(obj: Any, method_name: str, original: Callable):
+    """Restore a previously instrumented method."""
+    setattr(obj, method_name, original)
+
+
+@contextmanager
+def capture_method(obj: Any, method_name: str,
+                   include_source: bool = True,
+                   capture_imports: bool = True):
+    """Context manager to temporarily capture a method on an object."""
+    original = instrument_method(obj, method_name, include_source, capture_imports)
+    try:
+        yield
+    finally:
+        uninstrument_method(obj, method_name, original)
 

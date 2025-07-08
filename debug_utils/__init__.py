@@ -36,7 +36,10 @@ from .capture import (
     capture_function,
     get_captured_calls,
     clear_captured_calls,
-    default_capture
+    default_capture,
+    instrument_method,
+    uninstrument_method,
+    capture_method,
 )
 
 # Serialization utilities
@@ -63,6 +66,13 @@ from .utils import (
     compare_function_outputs,
     benchmark_function_performance,
     create_debug_workspace
+)
+
+from .environment import (
+    get_environment_info,
+    get_python_info,
+    get_torch_info,
+    get_process_info,
 )
 
 # Version info
